@@ -1,0 +1,59 @@
+#div_central {
+	float: left;
+	width: 80%;
+	min-height: 400px;
+	border: 6px solid blue;
+}
+
+#div_central1 {
+	float: left;
+	width: 80%;
+	min-height: 400px;
+	border: 6px solid green;
+}
+
+#meio {
+	position: relative;
+	width: 750px;
+	min-height: 400px;
+	background-color: #eeeeee;
+}
+
+#esquerda {
+	float: left;
+	width: 150px;
+	min-height: 400px;
+	border: 2px solid green;
+}
+
+#menu {
+	width: 150px;
+	height: 400px;
+}
+
+imagem {
+	background-image: url(imagem/senai.jpg);
+	width: 150px;
+	height: 150px;
+}
+
+fieldset {
+	padding-top: 10px;
+	border: 3px solid #fff;
+	border-radius: 8px;
+	box-shadow: 0 0 10px #fff;
+	width: 60%;
+	position: absolute;
+	left: 15%;
+	top: 1%;
+	background-color: #9BDF8C
+}
+
+legend {
+	float: left;
+	margin-top: -20px;
+}
+
+legend+* {
+	clear: both;
+}
