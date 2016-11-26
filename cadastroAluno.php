@@ -7,7 +7,7 @@ include_once ("./classe/categorias.class.php");
 <link rel="stylesheet" href="css/style.css">
 <title>Cadastro Categoria</title>
 </head>
-<body>
+<body background="img/back.jpg">
 
 <form name="form1" method="POST" action="index.php?pag=categoria">
 

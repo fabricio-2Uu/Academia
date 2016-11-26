@@ -6,6 +6,8 @@ class Alunos {
 	private $nomeAluno;
 	private $nomeAtividade;
 	private $valorMensalidade;
+	private $port = '3306';
+	
 	
 	// Construtor================================================================================================================================
 	public function __construct($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade) {
@@ -47,12 +49,12 @@ class Alunos {
 	}
 	
 	
-	
+
 	function cadastrarCategoria(){
 			
 		try {
 			
-			$pdo = new PDO('mysql:host=localhost;port=3308;dbname=base_pedidos', 'root', '');
+			$pdo = new PDO('mysql:host=localhost;port='.$this->port.';dbname=base_pedidos', 'root', '');
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$stmt = $pdo->prepare('INSERT INTO categorias(codigoAluno, nomeAluno, nomeAtividade, valorMensalidade) VALUES (:codigoAluno, :nomeAluno, :nomeAtividade, :valorMensalidade)');
 			$stmt->execute(array(
@@ -71,11 +73,12 @@ class Alunos {
 			
 		try {
 				
-			$pdo = new PDO('mysql:host=localhost;port=3308;dbname=base_pedidos', 'root', '');
+			$pdo = new PDO('mysql:host=localhost;port='.$this->port.';dbname=base_pedidos', 'root', '');
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 						
 			$consulta = $pdo->query("SELECT codigoAluno, nomeAluno, nomeAtividade, valorMensalidade FROM categorias;");
 			
+			echo "<body  background='img/back.jpg'>";
 			echo "<table border=0 width='95%'>";			
 			echo "<tr>";
 			echo "<th>Aluno</th>";
@@ -115,11 +118,12 @@ class Alunos {
 	public function consultarCategoria($codigoAluno) {
 		try {
 				
-			$pdo = new PDO('mysql:host=localhost;port=3308;dbname=base_pedidos', 'root', '');
+			$pdo = new PDO('mysql:host=localhost;port='.$this->port.';dbname=base_pedidos', 'root', '');
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 						
 			$consulta = $pdo->query("SELECT codigoAluno, nomeAluno, nomeAtividade, valorMensalidade FROM categorias WHERE codigoAluno=".$codigoAluno.";");
-				
+			
+			echo "<body  background='img/back.jpg'>";
 			echo "<form name='form1' method='POST' action='index.php?pag=categoria_alt'>";
 			echo "<table class=tableForm border=0>";
 				
@@ -165,7 +169,7 @@ class Alunos {
 		if (isset ( $codigoAluno )) {
 				
 			try {
-				$pdo = new PDO('mysql:host=localhost;port=3308;dbname=base_pedidos', 'root', '');
+				$pdo = new PDO('mysql:host=localhost;port='.$this->port.';dbname=base_pedidos', 'root', '');
 				$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			
 				$stmt = $pdo->prepare('UPDATE categorias SET nomeAluno = :nomeAluno, nomeAtividade = :nomeAtividade, valorMensalidade = :valorMensalidade WHERE codigoAluno = :codigoAluno');
@@ -188,7 +192,7 @@ class Alunos {
 		if (isset( $codigoAluno )) {
 			
 			try {			
-			$pdo = new PDO('mysql:host=localhost;port=3308;dbname=base_pedidos', 'root', '');
+			$pdo = new PDO('mysql:host=localhost;port='.$this->port.';dbname=base_pedidos', 'root', '');
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			
 			$stmt = $pdo->prepare('DELETE FROM categorias WHERE codigoAluno = :codigoAluno');
