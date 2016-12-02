@@ -11,7 +11,8 @@ if ($codigoAluno != "") {
 	$nomeAluno = "";
 	$nomeAtividade = "";
 	$valorMensalidade = 0;
-	$categoria = new Alunos($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade);
+	$dataVencimento = null;
+	$categoria = new Alunos($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade, $dataVencimento);
 	$categoria->consultarCategoria($codigoAluno);
 }
 ?>

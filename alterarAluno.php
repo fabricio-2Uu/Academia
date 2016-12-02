@@ -5,10 +5,11 @@ $codigoAluno = $_POST["codigoAluno"];
 $nomeAluno = $_POST["nomeAluno"];
 $nomeAtividade = $_POST["nomeAtividade"];
 $valorMensalidade =$_POST["valorMensalidade"];
+$dataVencimento =$_POST["dataVencimento"];
 
 if (($codigoAluno != "") && ($nomeAluno != "")) {	
-	$categorias = new Alunos($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade);
-	$categorias->alterarCategoria($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade);
+	$categorias = new Alunos($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade, $dataVencimento);
+	$categorias->alterarCategoria($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade, $dataVencimento);
 	header('Location: index.php?pag=categoria' );
 	$mensagem = "Aluno alterado com sucesso !";
 } else {

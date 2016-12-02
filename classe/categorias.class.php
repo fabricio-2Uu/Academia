@@ -6,15 +6,25 @@ class Alunos {
 	private $nomeAluno;
 	private $nomeAtividade;
 	private $valorMensalidade;
-	private $port = '3306';
+	private $dataVencimento;
+	private $port = '3308';
 	
 	
 	// Construtor================================================================================================================================
-	public function __construct($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade) {
+	public function __construct($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade, $dataVencimento) {
 		$this->codigoAluno = $codigoAluno;
 		$this->nomeAluno = $nomeAluno;
 		$this->nomeAtividade = $nomeAtividade;
 		$this->valorMensalidade = $valorMensalidade;
+		$this->dataVencimento = $dataVencimento;
+	}
+
+	// ==========================================================================================================================================
+	public function setdataVencimento($dataVencimento) {
+		$this->setdataVencimento = $dataVencimento;
+	}
+	public function getdataVencimento() {
+		return $this->dataVencimento;
 	}
 	
 	// ==========================================================================================================================================
@@ -56,12 +66,13 @@ class Alunos {
 			
 			$pdo = new PDO('mysql:host=localhost;port='.$this->port.';dbname=base_pedidos', 'root', '');
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$stmt = $pdo->prepare('INSERT INTO categorias(codigoAluno, nomeAluno, nomeAtividade, valorMensalidade) VALUES (:codigoAluno, :nomeAluno, :nomeAtividade, :valorMensalidade)');
+			$stmt = $pdo->prepare('INSERT INTO categorias(codigoAluno, nomeAluno, nomeAtividade, valorMensalidade, dataVencimento) VALUES (:codigoAluno, :nomeAluno, :nomeAtividade, :valorMensalidade, :dataVencimento)');
 			$stmt->execute(array(
 					':codigoAluno' => $this->codigoAluno,
 					':nomeAluno'   => $this->nomeAluno,
 					':nomeAtividade' => $this->nomeAtividade,
-					':valorMensalidade' => $this->valorMensalidade
+					':valorMensalidade' => $this->valorMensalidade,
+					':dataVencimento' => $this->dataVencimento
 			));
 			echo 'Aluno inserido com sucesso.';
 		} catch(PDOException $e) { 
@@ -76,7 +87,7 @@ class Alunos {
 			$pdo = new PDO('mysql:host=localhost;port='.$this->port.';dbname=base_pedidos', 'root', '');
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 						
-			$consulta = $pdo->query("SELECT codigoAluno, nomeAluno, nomeAtividade, valorMensalidade FROM categorias;");
+			$consulta = $pdo->query("SELECT codigoAluno, nomeAluno, nomeAtividade, valorMensalidade, dataVencimento FROM categorias;");
 			
 			echo "<body  background='img/back.jpg'>";
 			echo "<table border=0 width='95%'>";			
@@ -84,6 +95,7 @@ class Alunos {
 			echo "<th>Aluno</th>";
 			echo "<th>Descrição do Aluno</th>";
 			echo "<th>Valor da Mensalidade</th>";
+			echo "<th>Próximo Vencimento</th>";
 			echo "<th width='10'><center>Alterar</center></th>";
 			echo "<th width='10'><center>Excluir</center></th>";
 			echo "</tr>";
@@ -94,6 +106,7 @@ class Alunos {
 				echo "<td><div class='fonte'>". $linha['nomeAluno'] ."</div></td>";
 				echo "<td><div class='fonte'>". $linha['nomeAtividade'] ."</div></td>";
 				echo "<td><div class='fonte'>". $linha['valorMensalidade'] ."</div></td>";
+				echo "<td><div class='fonte'>". date('d/m/Y', strtotime($linha['dataVencimento'])) ."</div></td>";
 				
 				$caminho = "index.php?pag=categoria_exc&codigoAluno=".$linha['codigoAluno'];
 				$index = "index.php";
@@ -121,7 +134,7 @@ class Alunos {
 			$pdo = new PDO('mysql:host=localhost;port='.$this->port.';dbname=base_pedidos', 'root', '');
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 						
-			$consulta = $pdo->query("SELECT codigoAluno, nomeAluno, nomeAtividade, valorMensalidade FROM categorias WHERE codigoAluno=".$codigoAluno.";");
+			$consulta = $pdo->query("SELECT codigoAluno, nomeAluno, nomeAtividade, valorMensalidade, dataVencimento FROM categorias WHERE codigoAluno=".$codigoAluno.";");
 			
 			echo "<body  background='img/back.jpg'>";
 			echo "<form name='form1' method='POST' action='index.php?pag=categoria_alt'>";
@@ -145,6 +158,9 @@ class Alunos {
 				echo "<td>Valor da Mensalidade</td>";
 				echo "<td><input required=required type='number' min='0.00' step='0.01' class=inputText name=valorMensalidade value='" .  $linha['valorMensalidade'] . "'></td>";
 				echo "</tr>";
+				echo "<td>Próximo Vencimento</td>";
+				echo "<td><input required=required type='date' class=inputText name=dataVencimento value='" .  $linha['dataVencimento'] . "'></td>";
+				echo "</tr>";
 	
 			}
 				
@@ -165,19 +181,20 @@ class Alunos {
 	}
 	
 	// ALTERA ========================================================================
-	public function alterarCategoria($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade) {
+	public function alterarCategoria($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade, $dataVencimento) {
 		if (isset ( $codigoAluno )) {
 				
 			try {
 				$pdo = new PDO('mysql:host=localhost;port='.$this->port.';dbname=base_pedidos', 'root', '');
 				$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			
-				$stmt = $pdo->prepare('UPDATE categorias SET nomeAluno = :nomeAluno, nomeAtividade = :nomeAtividade, valorMensalidade = :valorMensalidade WHERE codigoAluno = :codigoAluno');
+				$stmt = $pdo->prepare('UPDATE categorias SET nomeAluno = :nomeAluno, nomeAtividade = :nomeAtividade, valorMensalidade = :valorMensalidade, dataVencimento = :dataVencimento WHERE codigoAluno = :codigoAluno');
 				$stmt->execute(array(
 						':codigoAluno'   => $codigoAluno,
 						':nomeAluno' => $nomeAluno,
 						':nomeAtividade' => $nomeAtividade,
-						':valorMensalidade' => $valorMensalidade
+						':valorMensalidade' => $valorMensalidade,
+						':dataVencimento' => $dataVencimento
 				));
 				
 				echo $stmt->rowCount();

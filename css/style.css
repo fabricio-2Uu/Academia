@@ -171,7 +171,7 @@ input:active { outline: 1px solid #7FDBFF }
 	FONT-SIZE: 10pt;
 	background: -webkit-gradient(linear, left top, left bottom, from(#414141),
 		to(#080808));
-	background: #ff8000;
+	background: #0f0;
 }
 
 .alinhamento_botao {
@@ -228,9 +228,9 @@ destaque {
     padding: 15px;
     text-align: center;
     display: block;
-    border-radius: 5px;
-   -moz-border-radius: 5px;
-   -webkit-border-radius: 5px;
+    border-radius: 1px;
+   -moz-border-radius: 1px;
+   -webkit-s
    COLOR: white;
    FONT-FAMILY: Arial;
    FONT-SIZE: 10pt;
@@ -352,12 +352,9 @@ table {
 	background: #a9a0fa;
 	margin: 10px;
 	border: #000000 1px solid;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	-moz-box-shadow: 0 1px 2px #000000;
-	-webkit-box-shadow: 0 1px 2px #000000;
-	box-shadow: 0 1px 2px #000000;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	border-radius: 0px;
 }
 
 table th {
@@ -370,15 +367,13 @@ table th {
 	font-weight: 750;
 	font-size: 12px;
 	font-family: Arial, Helvetica, sans-serif;
-	background: #ff4100;
-	background: -webkit-gradient(linear, left top, left bottom, from(#414141), to(#080808));
-	background: -moz-linear-gradient(top, #ededed, #ebebeb);
+	/* background: #ff4100; */
 }
 
 table th {
 	text-align: left;
 	padding-left: 10px;
-	background: #000000;
+	background: #5f5;
 }
 
 table tr:first-child th:first-child {

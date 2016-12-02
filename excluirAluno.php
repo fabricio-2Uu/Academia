@@ -7,7 +7,8 @@ $codigoAluno = $_GET["codigoAluno"];
 if ($codigoAluno != "") {
 	$nomeAluno = "";
 	$nomeAtividade = "";
-	$categoria = new Alunos($codigoAluno, $nomeAluno, $nomeAtividade);
+	$dataVencimento = null;
+	$categoria = new Alunos($codigoAluno, $nomeAluno, $nomeAtividade, $dataVencimento);
 	$categoria->excluiCategoria($codigoAluno);
 	$mensagem = "Aluno excluido com sucesso !";
 } else {

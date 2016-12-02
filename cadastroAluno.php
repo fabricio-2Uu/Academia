@@ -29,6 +29,10 @@ include_once ("./classe/categorias.class.php");
 		<tr>
 			<td>Valor da Mensalidade</td>
 			<td><input required=required type="number" min="0" step='0.01'  class=inputText name=valorMensalidade></td>
+		</tr>	
+		<tr>
+			<td>Próximo Vencimento</td>
+			<td><input required=required type="date"  class=inputText name=dataVencimento></td>
 		</tr>
 		<tr>
 			<td colspan='2'>
@@ -49,7 +53,8 @@ $codigoAluno = 0;
 $nomeAluno = "";
 $nomeAtividade = "";
 $valorMensalidade = 0;
-$lista = new Alunos($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade);
+$dataVencimento = null;
+$lista = new Alunos($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade, $dataVencimento);
 $lista->listarCategoria();
 ?>
 </fieldset>			
@@ -62,7 +67,8 @@ if (isset($_GET["pag"])){
 		echo $nomeAluno = $_POST["nomeAluno"];
 		echo $nomeAtividade = $_POST["nomeAtividade"];
 		echo $valorMensalidade = $_POST["valorMensalidade"];
-		$categorias = new Alunos($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade);
+		echo $dataVencimento = $_POST["dataVencimento"];
+		$categorias = new Alunos($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade, $dataVencimento);
 		$categorias->cadastrarCategoria();
 	}
 }

@@ -9,8 +9,8 @@ $codigoAluno = 0;
 $nomeAluno = "";
 $nomeAtividade = "";
 $valorMensalidade = 0;
-
-$categorias = new Alunos($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade);
+$dataVencimento = null;
+$categorias = new Alunos($codigoAluno, $nomeAluno, $nomeAtividade, $valorMensalidade, $dataVencimento);
 $categorias->listarCategoria();
 ?>
 </fieldset>
